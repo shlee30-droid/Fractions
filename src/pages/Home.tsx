@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { topics } from '../data';
+import Comments from '../components/Comments';
 
 const Home: React.FC = () => {
   const totalLessons = topics[0]?.sections.length || 10;
@@ -57,6 +58,9 @@ const Home: React.FC = () => {
           <span>→</span>
         </Link>
       </section>
+
+      {/* Comments Section */}
+      <Comments />
 
       {/* Footer */}
       <footer className="home-footer text-center" style={{ 
