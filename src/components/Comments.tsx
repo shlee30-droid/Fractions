@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 const Comments: React.FC = () => {
-  const [reviews, setReviews] = useState<string[]>([]);
-  const [text, setText] = useState('');
-
-  useEffect(() => {
+  const [reviews, setReviews] = useState<string[]>(() => {
+    if (typeof window === 'undefined') return [];
     const stored = localStorage.getItem('reviews');
-    if (stored) {
-      setReviews(JSON.parse(stored));
-    }
-  }, []);
+    return stored ? JSON.parse(stored) as string[] : [];
+  });
+  const [text, setText] = useState('');
 
   const submitReview = (event: React.FormEvent) => {
     event.preventDefault();
